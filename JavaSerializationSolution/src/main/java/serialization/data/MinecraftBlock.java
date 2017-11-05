@@ -7,12 +7,14 @@ public class MinecraftBlock {
     private String technicalName;
     private int stackCapacity;
     private List<MinecraftBlockCraft> crafts;
+    private MinecraftBlockIdentifier minecraftBlockIdentifier;
 
-    public MinecraftBlock(String blockName, String technicalName, int stackCapacity, List<MinecraftBlockCraft> crafts) {
+    public MinecraftBlock(String blockName, String technicalName, int stackCapacity, List<MinecraftBlockCraft> crafts, MinecraftBlockIdentifier minecraftBlockIdentifier) {
         this.blockName = blockName;
         this.technicalName = technicalName;
         this.stackCapacity = stackCapacity;
         this.crafts = crafts;
+        this.minecraftBlockIdentifier = minecraftBlockIdentifier;
     }
 
     public String getBlockName() {
@@ -37,5 +39,21 @@ public class MinecraftBlock {
 
     public void setStackCapacity(int stackCapacity) {
         this.stackCapacity = stackCapacity;
+    }
+
+    public MinecraftBlockIdentifier getMinecraftBlockIdentifier() {
+        return minecraftBlockIdentifier;
+    }
+
+    public void setMinecraftBlockIdentifier(MinecraftBlockIdentifier minecraftBlockIdentifier) {
+        this.minecraftBlockIdentifier = minecraftBlockIdentifier;
+    }
+
+    public List<MinecraftBlockCraft> getCrafts() {
+        return crafts;
+    }
+
+    public void setCrafts(List<MinecraftBlockCraft> crafts) {
+        this.crafts = crafts;
     }
 }

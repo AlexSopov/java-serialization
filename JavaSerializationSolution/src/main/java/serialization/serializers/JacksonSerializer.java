@@ -1,14 +1,26 @@
 package serialization.serializers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import serialization.infrastructure.Serializer;
 
-public class JacksonSerializer<T> implements Serializer<T> {
+import java.io.IOException;
 
-    public T deserialize(String serializedValue) {
-        return null;
+public class JacksonSerializer<T> extends Serializer<T> {
+    ObjectMapper objectMapper;
+
+    public JacksonSerializer(Class<T> typeParameterClass) {
+        super(typeParameterClass);
+        objectMapper = new ObjectMapper();
     }
 
-    public void serialize(T serializableObject) {
+    @Override
+    public T deserialize(String serializedValue) throws IOException {
+        return objectMapper.readValue(serializedValue, genericParameterClass);
+    }
 
+    @Override
+    public String serialize(T serializableObject) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(serializableObject);
     }
 }

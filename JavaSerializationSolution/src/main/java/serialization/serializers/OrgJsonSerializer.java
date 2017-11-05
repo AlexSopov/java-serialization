@@ -2,13 +2,10 @@ package serialization.serializers;
 
 import serialization.infrastructure.Serializer;
 
-public class OrgJsonSerializer<T> implements Serializer<T> {
+public abstract class OrgJsonSerializer<T> extends Serializer<T> {
 
-    public T deserialize(String serializedValue) {
-        return null;
+    public OrgJsonSerializer(Class<T> typeParameterClass) {
+        super(typeParameterClass);
     }
 
-    public void serialize(T serializableObject) {
-
-    }
 }
