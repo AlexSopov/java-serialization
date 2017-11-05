@@ -23,23 +23,17 @@ public class Program {
         MinecraftBlockOrgJsonSerializer  minecraftBlockGsonSerializer3= new MinecraftBlockOrgJsonSerializer();
 
         try {
-            minecraftBlockGsonSerializer3.deserialize(minecraftBlockGsonSerializer3.serialize(obj));
+            obj = minecraftBlockGsonSerializer3.deserialize(minecraftBlockGsonSerializer3.serialize(obj));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        test(minecraftBlockGsonSerializer3, obj);
 
     }
 
-    private static void test(Serializer a, MinecraftBlock minecraftBlock) {
-        try {
-            System.out.println(a.serialize(minecraftBlock));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
+    private static void getPerfomance(Serializer<?> serializer, Iterable<MinecraftBlock> blocksToSerialize) {
 
+    }
 
     private static MinecraftBlock generateBlock() {
         HashMap<String, String> myMap = new HashMap<String, String>();
