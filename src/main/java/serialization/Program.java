@@ -26,7 +26,11 @@ public class Program {
         getPerfomance(new MinecraftBlockOrgJsonSerializer(), minecraftBlockList);
     }
 
-    private static void getPerfomance(Serializer<MinecraftBlock> serializer, Iterable<MinecraftBlock> blocksToSerialize) {
+    public static void getPerfomance(Serializer<MinecraftBlock> serializer, Iterable<MinecraftBlock> blocksToSerialize) {
+        if (serializer == null || blocksToSerialize == null) {
+            throw new IllegalArgumentException();
+        }
+
         MetrcisCollector metrcisCollector = new MetrcisCollector();
         metrcisCollector.start();
 
@@ -52,7 +56,7 @@ public class Program {
         System.out.println();
     }
 
-    private static MinecraftBlock generateBlock() {
+    public static MinecraftBlock generateBlock() {
         HashMap<String, String> myMap = new HashMap<>();
         myMap.put("A", "minecraft:planks");
 

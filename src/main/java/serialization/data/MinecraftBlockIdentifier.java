@@ -42,11 +42,4 @@ public class MinecraftBlockIdentifier {
 
         return majorId == that.majorId && minorId == that.minorId;
     }
-
-    @Override
-    public int hashCode() {
-        int result = majorId;
-        result = 31 * result + minorId;
-        return result;
-    }
 }

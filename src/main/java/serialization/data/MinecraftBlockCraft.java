@@ -52,12 +52,4 @@ public class MinecraftBlockCraft {
         return schema.equals(that.schema) && schemaData.equals(that.schemaData) && isFormCraft.equals(that.isFormCraft);
 
     }
-
-    @Override
-    public int hashCode() {
-        int result = schema.hashCode();
-        result = 31 * result + schemaData.hashCode();
-        result = 31 * result + isFormCraft.hashCode();
-        return result;
-    }
 }

@@ -79,14 +79,4 @@ public class MinecraftBlock {
                 crafts.equals(that.crafts) &&
                 minecraftBlockIdentifier.equals(that.minecraftBlockIdentifier);
     }
-
-    @Override
-    public int hashCode() {
-        int result = blockName.hashCode();
-        result = 31 * result + technicalName.hashCode();
-        result = 31 * result + stackCapacity;
-        result = 31 * result + crafts.hashCode();
-        result = 31 * result + minecraftBlockIdentifier.hashCode();
-        return result;
-    }
 }
