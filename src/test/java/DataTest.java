@@ -32,7 +32,7 @@ public class DataTest {
         MinecraftBlockIdentifier minecraftBlockIdentifier3 = new MinecraftBlockIdentifier(1, 10);
 
         Assert.assertEquals(minecraftBlockIdentifier, minecraftBlockIdentifier3);
-        Assert.assertEquals(minecraftBlockIdentifier2, minecraftBlockIdentifier3);
+        Assert.assertNotEquals(minecraftBlockIdentifier2, minecraftBlockIdentifier3);
     }
 
     @Test
