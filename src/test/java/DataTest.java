@@ -23,6 +23,8 @@ public class DataTest {
 
         Assert.assertEquals(minecraftBlockCraft, minecraftBlockCraft2);
         Assert.assertNotEquals(minecraftBlockCraft, minecraftBlockCraft3);
+        Assert.assertNotEquals(minecraftBlockCraft, null);
+        Assert.assertEquals(minecraftBlockCraft, minecraftBlockCraft);
     }
 
     @Test
@@ -33,6 +35,8 @@ public class DataTest {
 
         Assert.assertEquals(minecraftBlockIdentifier, minecraftBlockIdentifier3);
         Assert.assertNotEquals(minecraftBlockIdentifier2, minecraftBlockIdentifier3);
+        Assert.assertNotEquals(minecraftBlockIdentifier, null);
+        Assert.assertEquals(minecraftBlockIdentifier, minecraftBlockIdentifier);
     }
 
     @Test
@@ -52,5 +56,7 @@ public class DataTest {
 
         Assert.assertEquals(minecraftBlock1, minecraftBlock3);
         Assert.assertNotEquals(minecraftBlock1, minecraftBlock2);
+        Assert.assertNotEquals(minecraftBlock1, null);
+        Assert.assertEquals(minecraftBlock1, minecraftBlock1);
     }
 }

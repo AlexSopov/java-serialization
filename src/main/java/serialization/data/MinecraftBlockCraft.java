@@ -50,6 +50,5 @@ public class MinecraftBlockCraft {
         MinecraftBlockCraft that = (MinecraftBlockCraft) o;
 
         return schema.equals(that.schema) && schemaData.equals(that.schemaData) && isFormCraft.equals(that.isFormCraft);
-
     }
 }

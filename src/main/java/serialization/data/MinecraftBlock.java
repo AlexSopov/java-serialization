@@ -73,10 +73,6 @@ public class MinecraftBlock {
 
         MinecraftBlock that = (MinecraftBlock) o;
 
-        return stackCapacity == that.stackCapacity &&
-                blockName.equals(that.blockName) &&
-                technicalName.equals(that.technicalName) &&
-                crafts.equals(that.crafts) &&
-                minecraftBlockIdentifier.equals(that.minecraftBlockIdentifier);
+        return stackCapacity == that.stackCapacity && blockName.equals(that.blockName) && technicalName.equals(that.technicalName) && crafts.equals(that.crafts) && minecraftBlockIdentifier.equals(that.minecraftBlockIdentifier);
     }
 }
