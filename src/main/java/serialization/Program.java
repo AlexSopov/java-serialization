@@ -1,8 +1,6 @@
 package serialization;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import serialization.data.MinecraftBlock;
 import serialization.data.MinecraftBlockCraft;
 import serialization.data.MinecraftBlockIdentifier;
@@ -10,33 +8,52 @@ import serialization.infrastructure.Serializer;
 import serialization.serializers.GsonSerializer;
 import serialization.serializers.JacksonSerializer;
 import serialization.serializers.MinecraftBlockOrgJsonSerializer;
-import serialization.serializers.OrgJsonSerializer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Program {
     public static void main(String[] args) {
-        MinecraftBlock obj = generateBlock();
-
-        MinecraftBlockOrgJsonSerializer  minecraftBlockGsonSerializer3= new MinecraftBlockOrgJsonSerializer();
-
-        try {
-            obj = minecraftBlockGsonSerializer3.deserialize(minecraftBlockGsonSerializer3.serialize(obj));
-        } catch (IOException e) {
-            e.printStackTrace();
+        List<MinecraftBlock> minecraftBlockList = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            minecraftBlockList.add(generateBlock());
         }
 
-
+        getPerfomance(new GsonSerializer<MinecraftBlock>(MinecraftBlock.class), minecraftBlockList);
+        getPerfomance(new JacksonSerializer<MinecraftBlock>(MinecraftBlock.class), minecraftBlockList);
+        getPerfomance(new MinecraftBlockOrgJsonSerializer(), minecraftBlockList);
     }
 
-    private static void getPerfomance(Serializer<?> serializer, Iterable<MinecraftBlock> blocksToSerialize) {
+    private static void getPerfomance(Serializer<MinecraftBlock> serializer, Iterable<MinecraftBlock> blocksToSerialize) {
+        MetrcisCollector metrcisCollector = new MetrcisCollector();
+        metrcisCollector.start();
 
+        List<String> serialized = new ArrayList<String>();
+        blocksToSerialize.forEach(block -> {
+            try {
+                serialized.add(serializer.serialize(block));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        });
+
+        serialized.forEach(serializedString -> {
+            try {
+                serializer.deserialize(serializedString);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        metrcisCollector.end();
+
+        System.out.println(metrcisCollector.getMetricsString());
+        System.out.println();
     }
 
     private static MinecraftBlock generateBlock() {
-        HashMap<String, String> myMap = new HashMap<String, String>();
+        HashMap<String, String> myMap = new HashMap<>();
         myMap.put("A", "minecraft:planks");
 
         MinecraftBlockCraft minecraftBlockCraft = new MinecraftBlockCraft("AAAA", myMap, false);
@@ -45,6 +62,6 @@ public class Program {
 
         MinecraftBlockIdentifier minecraftBlockIdentifier = new MinecraftBlockIdentifier(1, 1);
 
-        return new MinecraftBlock("name1", "na:na", 64, minecraftBlockCrafts, minecraftBlockIdentifier);
+        return new MinecraftBlock("Crafting table", "minecraft:crafting_table", 64, minecraftBlockCrafts, minecraftBlockIdentifier);
     }
 }

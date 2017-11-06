@@ -12,6 +12,7 @@ public class JacksonSerializer<T> extends Serializer<T> {
     public JacksonSerializer(Class<T> typeParameterClass) {
         super(typeParameterClass);
         objectMapper = new ObjectMapper();
+        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
     }
 
     @Override
