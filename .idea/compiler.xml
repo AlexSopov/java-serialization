@@ -21,6 +21,8 @@
     <bytecodeTargetLevel>
       <module name="java-serialization_main" target="1.8" />
       <module name="java-serialization_test" target="1.8" />
+      <module name="JavaSerialization_main" target="1.8" />
+      <module name="JavaSerialization_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
